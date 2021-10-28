@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+  <%- include('../partials/head.ejs') %>  <!--  Incluye el HEAD y se usan los .. (dos puntos) para que salga de la carpeta user y vaya a partials -->
+
+  <body>
+
+  <%- include('../partials/header.ejs') %>  <!--  Incluye el HEADER y se usan los .. (dos puntos) para que salga de la carpeta user y vaya a partials -->
+
+
+    <div class="topHeader">
+    
+      <form action="/users/register" method="POST" class="formularioLog" enctype="multipart/form-data"> <!-- Formulario para crear usuario. Ademas tienen el "enctype=multipart..."" para subir imagen -->
+        <h2 class="h-2">CREA TU CUENTA!</h2>
+          
+        <video muted autoplay loop>
+          <source src="/video/Login Video.mp4">
+        </video>
+
+          <div class="capa"></div>
+
+          <div class="mb-3">
+            <label>Nombre:</label>
+              <input 
+                type="text" 
+                name="nombre" 
+                class="form-control <%= locals.errors && errors.nombre ? 'is-invalid' : null %>"
+                value="<%= locals.oldData ? oldData.nombre: null %>"> <!-- Mantiene en pantalla los datos que se fueron agregando del usuario -->
+                <% if (locals.errors && errors.nombre) {%>   <!-- Si en las variables locales vino errors y si en erros vino un error en nombre -->
+                  <div class="text-danger">
+                    <p><%= errors.nombre.msg %></p> <!-- muestra el mensaje que debe llenar el campo de nombre -->
+                  </div>
+                <% } %>  
+ 
+            <label>Apellido:</label>
+              <input 
+                type="text"
+                name="apellido"
+                class="form-control <%= locals.errors && errors.apellido ? 'is-invalid' : null %>"
+                value="<%= locals.oldData ? oldData.apellido: null %>"> <!-- Mantiene en pantalla los datos que se fueron agregando del usuario -->
+                <% if (locals.errors && errors.apellido) {%>   <!-- Si en las variables locales vino errors y si en erros vino un error en apellido -->
+                  <div class="text-danger">
+                    <p><%= errors.apellido.msg %></p> <!-- muestra el mensaje que debe llenar el campo de apellido -->
+                  </div>
+                <% } %>  
+                                  
+            <label>Domicilio:</label>
+              <input 
+                type="text" 
+                name="domicilio" 
+                class="form-control <%= locals.errors && errors.domicilio ? 'is-invalid' : null %>" 
+                value="<%= locals.oldData ? oldData.domicilio: null %>"> <!-- Mantiene en pantalla los datos que se fueron agregando del usuario -->
+                <% if (locals.errors && errors.domicilio) {%>   <!-- Si en las variables locales vino errors y si en erros vino un error en domicilio -->
+                  <div class="text-danger">
+                    <p><%= errors.domicilio.msg %></p> <!-- muestra el mensaje que debe llenar el campo de domicilio -->
+                  </div>
+                <% } %>  
+                
+            <label>Email: </label>
+              <input 
+                type="email" 
+                name="email"
+                class="form-control <%= locals.errors && errors.email ? 'is-invalid' : null %>"
+                value="<%= locals.oldData ? oldData.email: null %>"> <!-- Mantiene en pantalla los datos que se fueron agregando del usuario -->
+                <% if (locals.errors && errors.email) {%>   <!-- Si en las variables locales vino errors y si en erros vino un error en email -->
+                  <div class="text-danger">
+                    <p><%= errors.email.msg %></p> <!-- muestra el mensaje que debe llenar el campo de email -->
+                  </div>
+                <% } %>  
+                     
+            <label>Categoria:</label>
+              <input 
+                type="text"
+                name="categoria"
+                class="form-control <%= locals.errors && errors.categoria ? 'is-invalid' : null %>"
+                value="<%= locals.oldData ? oldData.categoria: null %>"> <!-- Mantiene en pantalla los datos que se fueron agregando del usuario -->
+                <% if (locals.errors && errors.categoria) {%>   <!-- Si en las variables locales vino errors y si en erros vino un error en categoria -->
+                  <div class="text-danger">
+                    <p><%= errors.categoria.msg %></p> <!-- muestra el mensaje que debe llenar el campo de categoria -->
+                  </div>
+                <% } %>  
+                                
+            <label>Contraseña: </label>
+              <input 
+                type="password"
+                name="contraseña"
+                class="form-control <%= locals.errors && errors.contraseña ? 'is-invalid' : null %>"
+                value="<%= locals.oldData ? oldData.password: null %>"> <!-- Mantiene en pantalla los datos que se fueron agregando del usuario -->
+                <% if (locals.errors && errors.contraseña) {%>   <!-- Si en las variables locales vino errors y si en erros vino un error en contraseña -->
+                  <div class="text-danger">
+                    <p><%= errors.contraseña.msg %></p> <!-- muestra el mensaje que debe llenar el campo de contraseña -->
+                  </div>
+                <% } %>  
+                     
+                <div class="row">
+                  <label>Sube tu imagen de perfil: </label>
+                    <input 
+                      type="file"
+                      name= "avatar"
+                      class="form-control">  <!-- El name "avatar" es importante usarlo en el archivo de routes users -->
+                      <% if (locals.errors && errors.avatar) {%>   <!-- Si en las variables locales vino errors y si en erros vino un error en subir avatar -->
+                        <div class="text-danger">
+                          <p><%= errors.avatar.msg %></p> <!-- muestra el mensaje que debe llenar el subir un avatar -->
+                        </div>
+                      <% } %>  
+                </div>
+  
+                <div class="row">
+                  <button type="submit" class="btn btn-success col-4 mt-5">Registrarse</button>
+                </div>
+                     
+                  <input class="robot" type="checkbox" checked="" name="No soy un robot" id="No-robot">
+                    <label class="required" for="terminos-registro">No soy un robot</label>
+          </div>        
+                            
+        </div>
+            
+      </form>
+        
+                  
+    <%- include('../partials/footer.ejs') %>
+               
+  </body>
+
+</html>
